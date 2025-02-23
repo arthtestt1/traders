@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Tracker</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
+    <style>
+        /* General Reset and Typography */
+/* General Reset and Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #003668;
+    background-image: linear-gradient(315deg, #1a78fb 0%, #0e0e0e 74%);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    max-width: 900px; /* Smaller container width */
+    margin: 0 auto;   /* Center horizontally */
+    padding: 20px;
+    background: #1e1e1e;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    width: 90%; /* Make it responsive */
+    max-height: 600px;
+    overflow: auto;
+}
+
+tbody{
+max-height: 200px;
+overflow-y: auto;
+}
+
+/* Transactions Table */
+#transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+    background-color: #252525;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#transactions-table thead {
+    background: linear-gradient(135deg, #353535, #444);
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+#transactions-table th, #transactions-table td {
+    padding: 15px 8px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+    color: #eaeaea;
+    font-size: 8px;
+}
+
+#transactions-table th {
+    font-weight: 300;
+}
+
+#transactions-table tbody tr {
+    transition: background-color 0.2s;
+}
+
+#transactions-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#transactions-table td img {
+    display: block;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    margin: 0 auto;
+}
+
+/* Responsive Wrapper */
+.table-wrapper {
+    overflow-x: auto; /* Allow horizontal scrolling on smaller screens */
+    border-radius: 12px;
+    max-height: 400px;
+}
+.table-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #252525;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #transactions-table th, #transactions-table td {
+        padding: 10px;
+        font-size: 12px; /* Adjust font size for smaller screens */
+    }
+}
+.card {
+    display: none;
+}
+.groups {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+    width: 100%; /* Ensure it covers the entire container */
+    margin-bottom: 15px;
+}
+
+.header-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.username {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.user-id {
+    font-size: 0.9rem;
+    color: #cccccc;
+}
+
+.stats-container {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.stats-labels {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    color: #cccccc;
+}
+
+.stat-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    text-align: center;
+}
+.amountx{
+    font-weight: 300;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .user-info {
+        justify-content: center;
+    }
+
+    .stats-container {
+        align-items: center;
+    }
+
+    .stats-labels,
+    .stats-values {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .profile-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .username {
+        font-size: 1rem;
+    }
+
+    .user-id {
+        font-size: 0.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .stat-value {
+        font-size: 0.85rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Transactions Table -->
+        <div class="groups">
+            <img
+              loading="lazy"
+              src="https://pbs.twimg.com/profile_banners/1562555201231265793/1666381338/1500x500"
+              class="header-image"
+              alt="Header graphic"
+            />
+            <div class="content-wrapper">
+              <div class="user-info">
+                <img
+                  loading="lazy"
+                  src="https://cdn.kolscan.io/profiles/BCnqsPEtA1TkgednYEebRpkmwFRJDCjMQcKZMMtEdArc.png"
+                  class="profile-image"
+                  alt="User profile"
+                />
+                <div class="user-details">
+                  <h2 class="username">Kreo</h2>
+                  <p class="user-id">BCnqsPE....tEdArc</p>
+                </div>
+              </div>
+              <div class="stats-container">
+                <div class="stats-labels">
+                  <h3 class="stat-label">Realized PnL<br><p class="amountx">$821.7K</p></h3>
+                  <h3 class="stat-label">Unrealized PnL<br><p class="amountx">$821.7K</p></h3>
+                  <h3 class="stat-label">Total Revenue<br><pc lass="amountx">$821.7K</p></h3>
+                  <h3 class="stat-label">Total Spent<br><p class="amountx">$821.7K</p></h3>
+                </div>
+              </div>
+            </div>   
+        <div class="table-wrapper">
+        <table id="transactions-table">
+            <thead>
+                <tr>
+                    <th>Pair</th>
+                    <th>Bought Token</th>
+                    <th>Bought Amount</th>
+                    <th>Bought USD Amount</th>
+                    <th>Sold Token</th>
+                    <th>Sold Amount</th>
+                    <th>Sold USD Amount</th>
+                </tr>
+            </thead>
+            <tbody id="transactions-body">
+                <!-- Transactions will be rendered here -->
+            </tbody>
+        </table>
+        </div>
+    </div> 
+
+    <script>
+        const walletAddress = "BCnqsPEtA1TkgednYEebRpkmwFRJDCjMQcKZMMtEdArc";
+        const apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjJkMzk0NTcwLTljMTktNGMzMC1iYzNlLTQ2YzhiYmI2ZTAzNiIsIm9yZ0lkIjoiNDI4NjExIiwidXNlcklkIjoiNDQwODgxIiwidHlwZUlkIjoiMDFmY2E4MmEtYzEzNC00MWUzLTljMDMtODgyMzFlNTRhZTNkIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MzgzNDU2MjgsImV4cCI6NDg5NDEwNTYyOH0.bM-wpOJ6YQskRJhAcxyOgvfiMgO2dlJa_FF09u9eYNw";
+        const url = `https://solana-gateway.moralis.io/account/mainnet/${walletAddress}/swaps?order=DESC`;
+        let existingTransactions = [];
+
+        async function fetchTransactions() {
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        "Accept": "application/json",
+                        "X-API-Key": apiKey
+                    }
+                });
+
+                if (!response.ok) throw new Error("Failed to fetch transactions");
+
+                const data = await response.json();
+                updateTransactions(data.result);
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById("transactions-body").innerHTML = "<tr><td colspan='8'>Failed to load transactions.</td></tr>";
+            }
+        }
+
+        function updateTransactions(transactions) {
+            if (JSON.stringify(existingTransactions) === JSON.stringify(transactions)) return;
+            existingTransactions = transactions;
+            
+            const transactionsBody = document.getElementById("transactions-body");
+            transactionsBody.innerHTML = "";
+            
+            transactions.forEach(tx => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${tx.pairLabel}</td>
+                    <td>${tx.bought.symbol}</td>
+                    <td>${tx.bought.amount}</td>
+                    <td>$${tx.bought.usdAmount.toFixed(2)}</td>
+                    <td>${tx.sold.symbol}</td>
+                    <td>${tx.sold.amount}</td>
+                    <td>$${tx.sold.usdAmount.toFixed(2)}</td>
+                `;
+                transactionsBody.appendChild(row);
+            });
+        }
+
+        setInterval(fetchTransactions, 5000);
+        document.addEventListener("DOMContentLoaded", fetchTransactions);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
