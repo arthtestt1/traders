@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Enhanced Chat Interface</title>
+    <link href="styles2.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- HTML for Sidebar -->
+    <div class="sidebar">
+      <!-- Logo Section -->
+      <div class="sidebar-logo">
+        <img src="images/paxailogo2.png" aria-details="""Logo" class="logo" />
+      </div>
+
+      <!-- Menu Section -->
+      <ul class="sidebar-menu">
+        <li><a href="index.html" data-page="index.html"><img src="https://cdn-icons-png.flaticon.com/512/1380/1380370.png" alt="Notification" class="icon" /></a></li>
+        <hr />
+        <li><a href="perp.html" data-page="perp.html"><img src="https://cdn-icons-png.freepik.com/256/894/894183.png?semt=ais_hybrid" alt="Calendar" class="icon" /></a></li>
+        <li><a href="solana.html" data-page="solana.html"><img src="https://cdn-icons-png.flaticon.com/512/6001/6001833.png" alt="Lock" class="icon" /></a></li>
+        <li><a href="stocks.html" data-page="stocks.html"><img src="https://cdn-icons-png.flaticon.com/512/831/831375.png" alt="Checklist" class="icon" /></a></li>
+        <li><a href="#" data-page="clock.html"><img src="https://static-00.iconduck.com/assets.00/ethereum-icon-317x512-0vz32hj4.png" alt="Clock" class="icon" /></a></li>
+        <li><a href="#" data-page="video.html"><img src="https://cdn-icons-png.flaticon.com/512/1232/1232241.png" alt="Video" class="icon" /></a></li>
+        <hr />
+        <li><a href="#" data-page="add.html"><img src="https://www.svgrepo.com/show/410350/betting.svg" alt="Add" class="icon" /></a></li>
+      </ul>
+    </div>
+
+    <div class="video-background">
+      <video autoplay muted loop>
+        <source src="images/bg3.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="overlay" id="popup-overlay">
+      <div class="popup">
+        <button class="close-btn" id="close-popup">&times;</button>
+        <iframe id="popup-iframe" src="" frameborder="0"></iframe>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main-container">
+      <!-- Container 1 -->
+      <div class="container">
+        <div class="section-header">
+          <h1>Daily Ranking</h1>
+          <button class="task-count">></button>
+        </div>
+
+
+        <main class="task-list" style="height: 200px; overflow: auto;">
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#1</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/br.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/blackrock.html" style="text-decoration: none; color:white">BR Exposed</a></span><span>-</span><span>@blackrockexposed</span><span id="textToCopy" style="display: none;">https://involio.com/blackrockexposed</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/blackrockexposed" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#2</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/ca.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/cryptomanforex.html" style="text-decoration: none; color:white">Coldest Alive (Forex)</a></span><span>-</span><span>@cryptoman</span><span id="textToCopy" style="display: none;">https://involio.com/cryptoman</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;" alt="Copy"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/cryptoman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#3</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/ca.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/cryptomanstocks.html" style="text-decoration: none; color:white">Coldest Alive (Stocks)</a></span><span>-</span><span>@cryptoman</span><span id="textToCopy" style="display: none;">https://involio.com/cryptoman</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;" alt="Copy"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/cryptoman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#4</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/ca.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/cryptomancom.html" style="text-decoration: none; color:white">Coldest Alive (Commodities)</a></span><span>-</span><span>@cryptoman</span><span id="textToCopy" style="display: none;">https://involio.com/cryptoman</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;" alt="Copy"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/cryptoman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+
+        </main>
+      </div>
+
+      <div class="container">
+        <div class="section-header">
+          <h1>Weekly Ranking</h1>
+          <button class="task-count">></button>
+        </div>
+
+
+        <main class="task-list" style="height: 200px; overflow: auto;">
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#1</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/br.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/blackrock.html" style="text-decoration: none; color:white">BR Exposed</a></span><span>-</span><span>@blackrockexposed</span><span id="textToCopy" style="display: none;">https://involio.com/blackrockexposed</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/blackrockexposed" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#2</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/ca.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/cryptomanforex.html" style="text-decoration: none; color:white">Coldest Alive (Forex)</a></span><span>-</span><span>@cryptoman</span><span id="textToCopy" style="display: none;">https://involio.com/cryptoman</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;" alt="Copy"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/cryptoman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#3</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/ca.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/cryptomanstocks.html" style="text-decoration: none; color:white">Coldest Alive (Stocks)</a></span><span>-</span><span>@cryptoman</span><span id="textToCopy" style="display: none;">https://involio.com/cryptoman</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;" alt="Copy"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/cryptoman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#4</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/ca.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/cryptomancom.html" style="text-decoration: none; color:white">Coldest Alive (Commodities)</a></span><span>-</span><span>@cryptoman</span><span id="textToCopy" style="display: none;">https://involio.com/cryptoman</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;" alt="Copy"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/cryptoman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+
+        </main>
+      </div>
+
+      <div class="container">
+        <div class="section-header">
+          <h1>Monthly Ranking</h1>
+          <button class="task-count">></button>
+        </div>
+
+
+        <main class="task-list" style="height: 200px; overflow: auto;">
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#1</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/br.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/blackrock.html" style="text-decoration: none; color:white">BR Exposed</a></span><span>-</span><span>@blackrockexposed</span><span id="textToCopy" style="display: none;">https://involio.com/blackrockexposed</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/blackrockexposed" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#2</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/ca.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/cryptomanforex.html" style="text-decoration: none; color:white">Coldest Alive (Forex)</a></span><span>-</span><span>@cryptoman</span><span id="textToCopy" style="display: none;">https://involio.com/cryptoman</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;" alt="Copy"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/cryptoman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#3</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/ca.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/cryptomanstocks.html" style="text-decoration: none; color:white">Coldest Alive (Stocks)</a></span><span>-</span><span>@cryptoman</span><span id="textToCopy" style="display: none;">https://involio.com/cryptoman</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;" alt="Copy"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/cryptoman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="task-item">
+            <div class="task-left">
+              <div class="task-id">
+                <i class="ti ti-chart-bar" aria-hidden="true"></i>
+                <span>#4</span>
+              </div>
+              <div class="task-title">
+                <i class="ti ti-file" aria-hidden="true"></i>
+                <div class="avatar" aria-label="John Doe"><img src="images/ca.png" style="height: 22px; width: 22px; border-radius: 50%;"></div><span><a href="#" class="popup-link" data-url="https://arthtestt1.github.io/traders/stock-wallet-tracker/cryptomancom.html" style="text-decoration: none; color:white">Coldest Alive (Commodities)</a></span><span>-</span><span>@cryptoman</span><span id="textToCopy" style="display: none;">https://involio.com/cryptoman</span><div class="copy-btn" onclick="copyText(this)"><img src="images/copy.png" style="width: 22px;" alt="Copy"></div></button>
+              </div>
+            </div>
+            <div class="task-right">
+              <div class="status-badge">+22,000$</div>
+              <div class="time-info">
+                <i class="ti ti-clock" aria-hidden="true"></i>
+                <span>24 hrs</span>
+              </div>
+              <div class="date-info">
+                <div class="avatar" aria-label="John Doe"><a href="https://involio.com/cryptoman" target="_blank" rel="noopener noreferrer" style="text-decoration: none; height:22px; width: 22px;"><img src="https://play-lh.googleusercontent.com/xQ5Hq62oW8TitpEmBKCugiThUpXuRWqeti1xzVFay3GEezhQK7aIObDgjrVP8h1iTYo" style="height: 22px; width: 22px;"></a></div>
+              </div>
+            </div>
+          </article>
+
+
+        </main>
+      </div>
+
+
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const taskCountBtns = document.querySelectorAll(".task-count");
+        
+        taskCountBtns.forEach(taskCountBtn => {
+          const taskList = taskCountBtn.closest('.container').querySelector(".task-list");
+
+          // Initially set max-height to the content height for smooth expansion
+          taskList.style.maxHeight = taskList.scrollHeight + "px";
+          taskList.style.opacity = "1"; // Make content visible initially
+
+          taskCountBtn.addEventListener("click", () => {
+            if (taskList.classList.contains("collapsed")) {
+              // Expand the list
+              taskList.classList.remove("collapsed");
+              taskList.classList.add("expand");
+
+              // Set max-height to content height to allow smooth expansion
+              taskList.style.maxHeight = taskList.scrollHeight + "px";
+              taskList.style.opacity = "1"; // Ensure content is visible
+
+              // Rotate the button 90 degrees when expanding
+              taskCountBtn.textContent = "<";  // Change the button text
+              taskCountBtn.style.transform = "rotate(90deg)";  // Rotate button 90 degrees
+            } else {
+              // Collapse the list
+              taskList.classList.remove("expand");
+              taskList.classList.add("collapse");
+
+              // Set max-height to content height initially
+              taskList.style.maxHeight = taskList.scrollHeight + "px"; 
+              setTimeout(() => {
+                taskList.style.maxHeight = "0"; // Collapse to 0 height
+                taskList.style.opacity = "0"; // Fade out content
+                taskList.classList.add("collapsed");
+
+                // Rotate the button back to the original position
+                taskCountBtn.textContent = ">";  // Change the button text
+                taskCountBtn.style.transform = "rotate(0deg)";  // Reset button rotation to 0 degrees
+              }, 10); // A slight delay to ensure maxHeight is set before collapsing
+            }
+          });
+        });
+      });
+
+      //popup window
+      const openPopupLinks = document.querySelectorAll('.popup-link');
+    const closePopupButton = document.getElementById('close-popup');
+    const popupOverlay = document.getElementById('popup-overlay');
+    const iframe = document.getElementById('popup-iframe');
+
+    // Open the popup and load the website in iframe based on the clicked link's data-url
+    openPopupLinks.forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent the default link behavior
+        const url = link.getAttribute('data-url'); // Get the URL from the link's data-url attribute
+        iframe.src = url; // Set the iframe src to load the website
+        popupOverlay.style.display = 'flex';
+      });
+    });
+
+    // Close the popup
+    closePopupButton.addEventListener('click', () => {
+      popupOverlay.style.display = 'none';
+      iframe.src = ''; // Clear the iframe src to stop loading
+    });
+
+    // Close popup if user clicks outside the popup
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) {
+        popupOverlay.style.display = 'none';
+        iframe.src = ''; // Clear iframe source when closing
+      }
+    });
+
+    //copy button
+    function copyText(element) {
+            const textElement = element.previousElementSibling; // Get text span
+            const originalText = textElement.innerText; // Save original text
+            const img = element.querySelector("img"); // Get the image inside the div
+
+            navigator.clipboard.writeText(originalText).then(() => {
+                img.src = "images/copied.png"; // Change to copied icon
+
+                setTimeout(() => {
+                    img.src = "images/copy.png"; // Revert back after 2 seconds
+                }, 2000);
+            });
+        }
+    </script>
+
+  </body>
+</html>
