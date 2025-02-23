@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pax | Chatbot</title>
+    <link rel="icon" href="images/paxailogo2.png" type="image/x-icon" />
+    <link href="styles.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
+    <script>
+      // Initialize Mermaid.js
+      document.addEventListener("DOMContentLoaded", () => {
+        mermaid.initialize({ startOnLoad: false }); // Prevent auto-rendering
+      });
+
+      // Function to render Mermaid diagrams for nested blocks
+      function renderMermaid() {
+        const mermaidBlocks = document.querySelectorAll(
+          "div#n8n-chat main.chat-layout.chat-wrapper.n8n-chat div.chat-body div.chat-messages-list div.chat-message.chat-message-from-bot div.chat-message-markdown pre code.language-mermaid"
+        );
+
+        mermaidBlocks.forEach((block) => {
+          // Modify the block content to enforce horizontal flowcharts (LR direction)
+          let content = block.textContent.trim();
+          if (!content.startsWith("graph LR")) {
+            content = content.replace(/^graph\s+\w*/, "graph LR"); // Replace any existing direction
+          }
+
+          const mermaidContainer = document.createElement("div");
+          mermaidContainer.classList.add("mermaid");
+          mermaidContainer.innerHTML = content; // Use updated content with enforced direction
+
+          // Replace the original code block with the rendered Mermaid container
+          block.parentElement.replaceWith(mermaidContainer);
+
+          // Render the Mermaid diagram
+          mermaid.init(undefined, mermaidContainer);
+        });
+      }
+
+      // Observe dynamically added nested Mermaid blocks
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              // Check for nested Mermaid blocks
+              const nestedMermaidBlocks = node.querySelectorAll(
+                "div#n8n-chat main.chat-layout.chat-wrapper.n8n-chat div.chat-body div.chat-messages-list div.chat-message.chat-message-from-bot div.chat-message-markdown pre code.language-mermaid"
+              );
+              if (nestedMermaidBlocks.length > 0) {
+                renderMermaid(); // Render diagrams if Mermaid blocks are found
+              }
+            }
+          });
+        });
+      });
+
+      // Start observing the chat container for changes
+      document.addEventListener("DOMContentLoaded", () => {
+        const chatContainer = document.getElementById("n8n-chat");
+        if (chatContainer) {
+          observer.observe(chatContainer, { childList: true, subtree: true });
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <!-- HTML for Sidebar -->
+    <div class="sidebar">
+      <!-- Logo Section -->
+      <div class="sidebar-logo">
+        <img src="images/paxailogo2.png" alt="Logo" class="logo" />
+      </div>
+
+      <!-- Menu Section -->
+      <ul class="sidebar-menu">
+        <li><a href="index.html" data-page="index.html"><img src="https://cdn-icons-png.flaticon.com/512/1380/1380370.png" alt="Notification" class="icon" /></a></li>
+        <hr />
+        <li><a href="perp.html" data-page="perp.html"><img src="https://cdn-icons-png.freepik.com/256/894/894183.png?semt=ais_hybrid" alt="Calendar" class="icon" /></a></li>
+        <li><a href="solana.html" data-page="solana.html"><img src="https://cdn-icons-png.flaticon.com/512/6001/6001833.png" alt="Lock" class="icon" /></a></li>
+        <li><a href="stocks.html" data-page="stocks.html"><img src="https://cdn-icons-png.flaticon.com/512/831/831375.png" alt="Checklist" class="icon" /></a></li>
+        <li><a href="#" data-page="clock.html"><img src="https://static-00.iconduck.com/assets.00/ethereum-icon-317x512-0vz32hj4.png" alt="Clock" class="icon" /></a></li>
+        <li><a href="#" data-page="video.html"><img src="https://cdn-icons-png.flaticon.com/512/1232/1232241.png" alt="Video" class="icon" /></a></li>
+        <hr />
+        <li><a href="#" data-page="add.html"><img src="https://www.svgrepo.com/show/410350/betting.svg" alt="Add" class="icon" /></a></li>
+      </ul>
+    </div>
+
+    <div class="video-background">
+      <video autoplay muted loop>
+        <source src="images/bg3.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main-container">
+      <div class="header-container">
+        <h1 class="gradient-text">Hello, Team</h1>
+        <p class="subtext">I have your order.</p>
+      </div>
+      <div id="chat-container"></div>
+    </div>
+
+    <script type="module">
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+      // Initialize the chat directly
+      const chatContainer = document.getElementById("chat-container");
+      createChat({
+        mode: "fullscreen",
+        webhookUrl: "https://arth2784.app.n8n.cloud/webhook/7615ea92-9abd-40f1-9d95-1b1962f89663/chat", // Default webhook URL
+        showWelcomeScreen: false,
+        loadPreviousSession: false,
+        element: chatContainer,
+        webhookConfig: {
+          headers: {
+            "Content-Type": "application/json",
+            "X-Instance-Id": "965f4257ec52f20a8cebc6a8a4d6050b67f002e75a2dafd277d51f0b943e727e",
+          },
+        },
+        allowFileUploads: false,
+        allowedFilesMimeTypes: "",
+        i18n: {
+          en: {},
+        },
+        initialMessages: [],
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,453 @@
+/* body */
+body {
+    background-color: #000000; /* Adjust based on the sidebar width */
+  }
+
+/* main */
+  .main-container {
+    margin-left: 60px;
+    position: relative;
+    z-index: 3;
+  }  
+
+  /*bg video */
+  .video-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black box */
+    z-index: 1; /* Ensure it stays above the video but below other content */
+  }
+  .video-background::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #246CF9 44%, transparent);
+    z-index: 2; /* Ensures the gradient is above the video */
+    pointer-events: none; /* Allows clicks to pass through */
+  }
+
+  .video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ensures it stays behind all content */
+    overflow: hidden;
+    opacity: 50%;
+    z-index: -1;
+  }
+  
+  .video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Ensures the video covers the entire background */
+  }
+  
+/* General Sidebar Styling */
+.sidebar {
+    width: 60px;
+    height: 100vh;
+    background: linear-gradient(to bottom, #000000, #1a1a1a);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.8);
+    overflow-y: hidden; 
+    z-index: 4;
+  }
+  
+  /* Sidebar Logo or Progress Section */
+  .sidebar-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .logo{
+        width: 40px;
+        height: 40px;
+        margin-top: -10px;
+        margin-bottom: 10px;
+  }
+  
+  /* Sidebar Menu List */
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Sidebar Menu Items */
+  .sidebar-menu li {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    filter: invert(100%);
+    opacity: 30%;
+  }
+  
+  .sidebar-menu li.active {
+    opacity: 100%;/* Highlight the active menu item */
+  }
+  .sidebar-menu li:hover {
+    opacity: 100%;
+  }  
+
+
+  .sidebar-menu hr {
+    width: 50%;
+    border: none;
+    border-top: 1px solid #333; /* Line color */
+    margin: 10px auto; /* Spacing around the line */
+  }
+
+  .sidebar-menu a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Icon Styling */
+  .sidebar-menu .icon {
+    width: 28px;
+    height: 28px;
+    fill: #ecf0f1;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 70px;
+      height: 100%;
+    }
+  
+    .sidebar-progress {
+      width: 50px;
+      height: 80px;
+    }
+  
+    .sidebar-menu li {
+      width: 50px;
+      height: 50px;
+    }
+  
+    .sidebar-menu .icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .sidebar {
+      width: 60px;
+      height: 100%;
+    }
+  
+    .sidebar-progress {
+      width: 40px;
+      height: 60px;
+    }
+  
+    .sidebar-menu li {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .sidebar-menu .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  /* name divs */
+  /* General Container Styles */
+.container {
+    margin: 0 auto;
+    background-color: #18191b;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    font-family: 'Poppins', sans-serif; /* Using Poppins font */
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      padding: 10px;
+    }
+  }
+  
+  /* Section Header Styles */
+  .section-header {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .section-header h2 {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+  }
+  
+  .divider {
+    height: 3px;
+    background-color: #1b1d1f;
+    margin: 0 17px;
+    border: none;
+  }
+  
+  /* Task Item Styles */
+  .task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 20px;
+    color: #fff;
+    background-color: #202124;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Drop shadow for task items */
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
+  }
+  
+  .task-item:hover {
+    background-color: #2b2c2f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+  }
+  
+  @media (max-width: 480px) {
+    .task-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+  
+  /* Task Left Section */
+  .task-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+  
+  .task-id {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+  }
+  
+  .task-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+  }
+  
+  /* Task Right Section */
+  .task-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  @media (max-width: 480px) {
+    .task-right {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .container{
+        max-width: 100%;
+    }
+  }
+  
+  /* Status Badge */
+  .status-badge {
+    background-color: #148201;
+    color: #fff;
+    border-radius: 10px;
+    padding: 5px 9px;
+    font-size: 10px;
+    border: 1px solid #404560;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Subtle shadow for badges */
+  }
+  
+  /* Progress Indicator */
+  .progress-indicator {
+    background-color: #303236;
+    color: #fff;
+    border-radius: 10px;
+    padding: 5px 6px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Shadow for progress indicator */
+  }
+  
+  /* Time Info */
+  .time-info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+  }
+  
+  /* Date Info */
+  .date-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+  }
+  
+  /* Avatar */
+  .avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: black;
+    color: #fff;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Subtle shadow for avatars */
+  }
+  
+  /* Marketing Tag */
+  .marketing-tag {
+    background-color: #c09860;
+    color: #fff;
+    border-radius: 10px;
+    padding: 7px 8px;
+    font-size: 9px;
+    border: 1px solid #4e4231;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Shadow for tags */
+  }
+  
+  /* Date Badge */
+  .date-badge {
+    background-color: #f09475;
+    color: #fff;
+    border-radius: 10px;
+    padding: 6px 9px;
+    font-size: 9px;
+    border: 1px solid #66463d;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Shadow for date badges */
+  }
+  /* Task item and divider hiding when collapsed */
+/* Task item and divider hiding when collapsed */
+.collapsed .task-item, 
+.collapsed .divider {
+  display: none;
+}
+/* Expanding transition: */
+.task-list.expand {
+  height: 250px; /* Large enough value to expand the content */
+  opacity: 1; /* Make sure content is visible */
+  transition: max-height 0.5s ease, opacity 0.5s ease; /* Smooth expansion */
+}
+h1{
+  font-size: 1rem;
+}
+/* Collapsing transition: */
+.task-list.collapse {
+  max-height: 0px; /* Collapse to 0 height */
+  opacity: 0; /* Fade out content */
+  transition: max-height 0.3s ease, opacity 0.3s ease; /* Smooth collapsing */
+  overflow: auto;
+}
+
+.task-count {
+    border: none;
+    background: none;
+    font-size: 1rem;
+    color: #ffffff7b;
+    transition: transform 0.3s ease; /* Smooth rotation for the button */
+}
+
+/*popup window */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  width: 80%;
+  height: 80%;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  background-color: #fff;
+}
+
+.popup iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+}
+.popup-link{
+  text-decoration: none;
+}
+.copyButton{
+  background: transparent;
+}
+  
+  
+  
+    

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pax | Chatbot</title>
+    <link rel="icon" href="images/paxailogo2.png" type="image/x-icon" />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Logo Section -->
+      <div class="sidebar-logo">
+        <img src="images/paxailogo2.png" alt="Logo" class="logo" />
+      </div>
+
+      <!-- Menu Section -->
+      <ul class="sidebar-menu">
+        <li><a href="index.html" data-page="index.html"><img src="https://cdn-icons-png.flaticon.com/512/1380/1380370.png" alt="Notification" class="icon" /></a></li>
+        <hr />
+        <li><a href="perp.html" data-page="perp.html"><img src="https://cdn-icons-png.freepik.com/256/894/894183.png?semt=ais_hybrid" alt="Calendar" class="icon" /></a></li>
+        <li><a href="solana.html" data-page="solana.html"><img src="https://cdn-icons-png.flaticon.com/512/6001/6001833.png" alt="Lock" class="icon" /></a></li>
+        <li><a href="stocks.html" data-page="stocks.html"><img src="https://cdn-icons-png.flaticon.com/512/831/831375.png" alt="Checklist" class="icon" /></a></li>
+        <li><a href="#" data-page="clock.html"><img src="https://static-00.iconduck.com/assets.00/ethereum-icon-317x512-0vz32hj4.png" alt="Clock" class="icon" /></a></li>
+        <li><a href="#" data-page="video.html"><img src="https://cdn-icons-png.flaticon.com/512/1232/1232241.png" alt="Video" class="icon" /></a></li>
+        <hr />
+        <li><a href="#" data-page="add.html"><img src="https://www.svgrepo.com/show/410350/betting.svg" alt="Add" class="icon" /></a></li>
+      </ul>
+    </div>
+
+    <!-- Video Background -->
+    <div class="video-background">
+      <video autoplay muted loop>
+        <source src="images/bg3.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+      <div class="header-container">
+        <h1 class="gradient-text">Hello, Team</h1>
+        <p class="subtext">How can I help you today?</p>
+      </div>
+      <!-- Button Container -->
+      <div class="button-container">
+        <button class="chat-button active" data-page="elon.html">
+          <img src="images/elon.png" alt="General" class="avatar" />
+        </button>
+        <button class="chat-button active" data-page="bill.html">
+          <img src="images/bill.png" alt="General" class="avatar" />
+        </button>
+        <button class="chat-button active" data-page="jeff.html">
+          <img src="images/jeff.png" alt="General" class="avatar" />
+        </button>
+        <button class="chat-button active" data-page="mark.html">
+          <img src="images/mark.png" alt="General" class="avatar" />
+        </button>
+        <button class="chat-button active" data-page="beast.html">
+          <img src="images/beast.png" alt="General" class="avatar" />
+        </button>
+        <button class="chat-button active" data-page="mukesh.html">
+          <img src="images/mukesh.png" alt="General" class="avatar" />
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Attach event listeners to sidebar items
+      document.querySelectorAll('.sidebar-menu a').forEach(item => {
+        item.addEventListener('click', event => {
+          event.preventDefault(); // Prevent default anchor behavior
+          const page = item.getAttribute('data-page'); // Get the page
+          window.location.href = page; // Navigate to the new page
+        });
+      });
+    
+      // Attach event listeners to chat buttons
+      document.querySelectorAll('.chat-button').forEach(button => {
+        button.addEventListener('click', event => {
+          event.preventDefault(); // Prevent default button behavior
+          const page = button.getAttribute('data-page'); // Get the page
+          window.location.href = page; // Navigate to the new page
+        });
+      });
+    </script>
+    
+    
+  </body>
+</html>
